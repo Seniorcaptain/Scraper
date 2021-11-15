@@ -7,7 +7,7 @@ session = requests_html.HTMLSession()
 # use session to get the page
 r = session.get('https://kenyanwallstreet.com/')
 r = session.get('https://www.businessdailyafrica.com/')
-#r =session.get(' https://www.standardmedia.co.ke/')
+# r =session.get(' https://www.standardmedia.co.ke/')
 
 # render the html, sleep=1 to give it a second to finish before moving on. scrolldown= how many times to page down on the browser, to get more results. 5 was a good number here
 # r.html.render()
@@ -36,3 +36,7 @@ for item in articles:
 df = pd.DataFrame(newslist)
 # print(df.head(5))
 df.to_csv('Headlines')
+from datetime import datetime
+
+with open('Headlines', 'a+') as file:
+    file.write(str(datetime.now()))
