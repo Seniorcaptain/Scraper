@@ -47,7 +47,7 @@ def strip_punctiations(line):
         return line
 
 
-filepath = 'Headlines.txt'
+filepath = 'Headlines.csv'
 word_count = {}
 with open(filepath, 'r') as fi:
     # for each line in file
