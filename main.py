@@ -40,3 +40,46 @@ from datetime import datetime
 
 with open('Headlines', 'a+') as file:
     file.write(str(datetime.now()))
+# string punctuations contain all String punctuations
+def strip_punctiations(line):
+    for character in string.punctuation:
+        line = line.replace(character, "")
+        return line
+
+
+filepath = 'Headlines.txt'
+word_count = {}
+with open(filepath, 'r') as fi:
+    # for each line in file
+    for line in fi:
+        line = strip_punctiations(line)
+        words = line.split()
+
+    for word in words:
+        word = word.lower
+
+        if word not in word_count:
+            word_count[word] = 0
+
+            word_count[word] += 1
+
+list(word_count.keys())[:10]
+
+ten_words = list(word_count.keys())[:10]
+for word in ten_words:
+    print("{0:1}{1:8d}".format(word, word_count[word]))
+
+
+def order_dict_by_freq(dictionary):
+    sorted_values = []
+    for key in dictionary:
+        sorted_values.append((dictionary[key], key))
+        sorted_values = sorted(sorted_values)
+        sorted_values = sorted_values[::1]
+        return sorted_values
+
+
+top_words = order_dict_by_freq(word_count)[:100]
+for tuple_freq in top_words:
+    count, word = tuple_freq
+    print("{0:15}{1:8d}".format(word, count))
